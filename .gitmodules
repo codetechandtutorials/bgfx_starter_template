@@ -1,0 +1,12 @@
+[submodule "submods/bgfx"]
+	path = submods/bgfx
+	url = https://github.com/bkaradzic/bgfx.git
+[submodule "submods/bx"]
+	path = submods/bx
+	url = https://github.com/bkaradzic/bx.git
+[submodule "submods/bimg"]
+	path = submods/bimg
+	url = https://github.com/bkaradzic/bimg.git
+[submodule "submods/bnet"]
+	path = submods/bnet
+	url = https://github.com/bkaradzic/bnet.git
