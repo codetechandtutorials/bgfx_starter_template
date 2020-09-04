@@ -21,19 +21,19 @@ endif()
 
 # make sure they exist
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bx/makefile")
-    message(FATAL_ERROR "The bx submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+	message(FATAL_ERROR "The bx submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bimg/makefile")
-    message(FATAL_ERROR "The bimg submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+	message(FATAL_ERROR "The bimg submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bgfx/makefile")
-    message(FATAL_ERROR "The bgfx submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+	message(FATAL_ERROR "The bgfx submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bnet/makefile")
-    message(FATAL_ERROR "The bnet submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
+	message(FATAL_ERROR "The bnet submodules was not downloaded! GIT_SUBMODULE was turned off or failed. Please update submodules and try again.")
 endif()
 
 
@@ -48,9 +48,8 @@ if(UNIX)
 
   target_include_directories(bgfx_proj 
 	PRIVATE 
-	 submods/bgfx/3rdparty/
-	 submods/bgfx/examples/common
-	
+		submods/bgfx/3rdparty/
+		submods/bgfx/examples/common
 	)
 
   #LINK LIBS
@@ -63,27 +62,29 @@ if(UNIX)
     if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bgfx/.build/linux64_gcc/bin/libbgfxDebug.a")
       message(FATAL_ERROR "The bgfx submodule was not built as debug! Go to bgfx folder and run: make linux-debug64")
     endif()
-	target_link_libraries(bgfx_proj bgfxDebug bimgDebug bxDebug
-	example-glueDebug
-	example-commonDebug
-	bimg_decodeDebug)
+	target_link_libraries(bgfx_proj 
+		bgfxDebug
+		bimgDebug
+		bxDebug
+		example-glueDebug
+		example-commonDebug
+		bimg_decodeDebug
+	)
   elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bgfx/.build/linux64_gcc/bin/libbgfxRelease.a")
-      message(bgfx_proj "The bgfx submodule was not built as release! Go to bgfx folder and run: make linux-release64")
+      message(FATAL_ERROR "The bgfx submodule was not built as release! Go to bgfx folder and run: make linux-release64")
     endif()
 	target_link_libraries(bgfx_proj
-	 example-glueRelease
-	 example-commonRelease
-	 bimg_decodeRelease
-
-	 bgfxRelease
-	 bimgRelease 
-	 bxRelease 
-
-	    )
+		example-glueRelease
+		example-commonRelease
+		bimg_decodeRelease
+		bgfxRelease
+		bimgRelease 
+		bxRelease
+	)
   endif()
 else()
-  message(FATAL_ERROR "This is for linux only right now, what's on your Hard Drive?")
+	message(FATAL_ERROR "This is for linux only right now, what's on your Hard Drive?")
 endif()
 
 file (COPY ${CMAKE_SOURCE_DIR}/submods/bgfx/examples/runtime/ DESTINATION ${CMAKE_BINARY_DIR})
