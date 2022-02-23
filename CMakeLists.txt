@@ -58,7 +58,7 @@ if(UNIX)
   #BGFX LINKS LOGIC
   target_link_directories(bgfx_proj PRIVATE ./submods/bgfx/.build/linux64_gcc/bin/)
 
-  if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+  if ("${CMAKE_BUILD_TYPE}" STREQUAL "Debug")
     if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bgfx/.build/linux64_gcc/bin/libbgfxDebug.a")
       message(FATAL_ERROR "The bgfx submodule was not built as debug! Go to bgfx folder and run: make linux-debug64")
     endif()
@@ -70,7 +70,7 @@ if(UNIX)
 		example-commonDebug
 		bimg_decodeDebug
 	)
-  elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+  elseif("${CMAKE_BUILD_TYPE}" STREQUAL "Release")
     if(NOT EXISTS "${PROJECT_SOURCE_DIR}/submods/bgfx/.build/linux64_gcc/bin/libbgfxRelease.a")
       message(FATAL_ERROR "The bgfx submodule was not built as release! Go to bgfx folder and run: make linux-release64")
     endif()
